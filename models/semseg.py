@@ -45,8 +45,7 @@ class SemsegPyramidModel(nn.Module):
         super(SemsegPyramidModel, self).__init__()
         self.backbone = backbone
         self.num_classes = num_classes
-        self.num_features = self.backbone.features if isinstance(self.backbone.features,
-                                                                 int) else self.backbone.num_features
+        self.num_features = self.backbone.features if hasattr(self.backbone, 'features') else self.backbone.num_features
         self.logits = _BNReluConv(self.num_features, self.num_classes, batch_norm=use_bn)
         self.has_aux_logits = aux_logits
         if aux_logits:
