@@ -83,6 +83,8 @@ if __name__ == '__main__':
     fig = plt.figure(figsize=(8, 8))
     fig.add_subplot(2, 1, 1)
     plt.imshow(pred[0])
+    result = pimg.fromarray(pred[0].astype(np.uint8))
+    result.save('000025s.png')
     fig.add_subplot(2, 1, 2)
     plt.imshow( pimg.open(ret_dict['image']).convert('RGB') )
 
